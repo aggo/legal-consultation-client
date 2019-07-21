@@ -16,5 +16,12 @@
     "Bad.credentials": "Numele de utilizator, mailul sau parola nu sunt corecte.",
     "UsernameOrEmail.not.empty": "Numele de utilizator sau mailul este obligatoriu.",
     "Password.not.empty": "Parola este obligatorie."
+  },
+
+
+  "users": {
+    "label": {
+      "Add.users": "Adauga membrii"
+    }
   }
 }

@@ -1,60 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {BaseComponent} from '@app/shared/components/base-component';
-import {takeUntil, tap} from 'rxjs/operators';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '@app/shared/components/base-component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.scss']
+    selector: 'app-top-bar',
+    templateUrl: './top-bar.component.html',
+    styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent extends BaseComponent implements OnInit {
 
-  currentLanguage: string;
+    currentLanguage: string;
 
-  constructor(private router: Router,
-              private translate: TranslateService) {
-    super();
-    translate.onLangChange
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
-  }
-  ngOnInit() {
-  }
+    constructor(private router: Router,
+                private translate: TranslateService) {
+        super();
+        translate.onLangChange
+            .pipe(takeUntil(this.destroyed$))
+            .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
+    }
 
-  logout() {
-    alert('That`s sad, you just logged out');
-  }
+    ngOnInit() {
+    }
 
-  applyFilter() {}
+    logout() {
+        alert('That`s sad, you just logged out');
+    }
 
-  profile() {
-    this.router.navigate(['home']);
-  }
+    applyFilter() {
+    }
 
-  about() {
-    this.router.navigate(['about']);
-  }
+    profile() {
+        this.router.navigate(['home']);
+    }
 
-  consultation() {
-    this.router.navigate(['in-consultation']);
-  }
+    about() {
+        this.router.navigate(['about']);
+    }
 
-  archive() {
-    this.router.navigate(['archive']);
-  }
+    consultation() {
+        this.router.navigate(['in-consultation']);
+    }
 
-  members() {
-    this.router.navigate(['members']);
-  }
+    archive() {
+        this.router.navigate(['archive']);
+    }
 
-  login() {
-    this.router.navigate(['authentication/log-in']);
-  }
+    users() {
+        this.router.navigate(['users']);
+    }
 
-  changeLanguage(lang: string) {
-    this.translate.use(lang);
-  }
+    login() {
+        this.router.navigate(['authentication/log-in']);
+    }
+
+    changeLanguage(lang: string) {
+        this.translate.use(lang);
+    }
 }

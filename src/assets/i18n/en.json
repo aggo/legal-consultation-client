@@ -16,5 +16,10 @@
     "Bad.credentials": "The specified username, email or password are not correct.",
     "UsernameOrEmail.not.empty": "Username or email is mandatory",
     "Password.not.empty": "Password is mandatory."
+  },
+  "users": {
+    "label": {
+      "Add.users": "Add members"
+    }
   }
 }
