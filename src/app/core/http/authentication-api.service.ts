@@ -26,9 +26,9 @@ export class AuthenticationApiService {
   login(loginRequest: LoginRequest) {
     return this.http.post<LoginRequest>(`${environment.api_url}/auth/signin`, loginRequest)
       .pipe(map((auth: any) => {
-        // login successful if there's a jwt token in the response
+        // login successful if there's a jwt accessToken in the response
         if (auth && auth.token) {
-          // store auth details and jwt token in local storage to keep user logged in between page refreshes
+          // store auth details and jwt accessToken in local storage to keep user logged in between page refreshes
           this.authenticationService.setCurrentUser(auth);
           this.currentUserSubject.next(auth);
         }

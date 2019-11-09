@@ -13,6 +13,7 @@ export class User {
   username: string;
   email: string;
   password: string;
+  accessToken: string;
 
   constructor(aData?: IUser) {
     if (aData) {
