@@ -13,6 +13,7 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 // guards
 import * as fromGuards from './guards';
 // page components
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SharedModule,
     FileUploadModule,
     AppRoutingModule,
+    FlexLayoutModule,
     StoreModule.forRoot([], {metaReducers}),
     EffectsModule.forRoot([]),
     TranslateModule.forRoot({
