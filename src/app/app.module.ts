@@ -4,8 +4,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
-
-import { HeaderInterceptor } from './interceptors/header.interceptor';
 // not used in production
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -13,7 +11,6 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from '@app/core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
 // guards
 import * as fromGuards from './guards';
 // page components
@@ -26,11 +23,6 @@ import { FileUploadModule } from 'ng2-file-upload';
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
 export const httpInterceptorProviders = [
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: HeaderInterceptor,
-    multi: true
-  },
   {
     provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
@@ -49,7 +41,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SharedModule,
     FileUploadModule,
     AppRoutingModule,
-    FlexLayoutModule,
     StoreModule.forRoot([], {metaReducers}),
     EffectsModule.forRoot([]),
     TranslateModule.forRoot({

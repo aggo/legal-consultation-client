@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: fromImportUsers.ImportUser
       const entities = action.payload.reduce((e: { [id: string]: User }, u: any) => {
         return {
           ...e,
-          [u.email]: new User(u),
+          [u.email]: new User(u).toJson(),
         };
       }, {});
       return {
@@ -31,6 +31,39 @@ export function reducer(state = initialState, action: fromImportUsers.ImportUser
         entities
       };
     }
+    case fromImportUsers.ImportUserActionTypes.UpdateImportedUser: {
+      const theUser: User = action.payload as User;
+      const entities = {
+        ...state.entities,
+        [theUser.email]: theUser,
+      };
+
+      return {
+        ...state,
+        entities,
+      } as ImportUserState;
+    }
+    case fromImportUsers.ImportUserActionTypes.DeleteImportedUser: {
+      const theUserEmail: string = action.payload as string;
+      const entities = {
+        ...state.entities,
+      };
+      delete entities[theUserEmail];
+
+      return {
+        ...state,
+        entities,
+      } as ImportUserState;
+    }
+    case fromImportUsers.ImportUserActionTypes.ImportedUsersSaveFailed: {
+      const error: Error = action.payload as Error;
+
+      return {
+        ...state,
+        error,
+      } as ImportUserState;
+    }
+
 
     default: {
       return {
@@ -44,4 +77,4 @@ export const getImportedUsersEntities = (state: ImportUserState) => state.entiti
 export const getUsersLoading = (state: ImportUserState) => state.loading;
 export const getUsersLoaded = (state: ImportUserState) => state.loaded;
 export const getUsersShouldReload = (state: ImportUserState) => state.shouldReload;
-export const getUsersErrors = (state: ImportUserState) => state.error;
+export const getImportUsersErrors = (state: ImportUserState) => state.error;
