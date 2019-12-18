@@ -5,6 +5,10 @@ import { ImportCsvComponent } from '@app/users/containers/import-csv/import-csv.
 import { ImportedUsersTableComponent } from '@app/users/components/imported-users-table/imported-users-table.component';
 // tslint:disable-next-line:max-line-length
 import { ImportedUsersTableRowComponent } from '@app/users/components/imported-users-table/imported-users-table-row/imported-users-table-row.component';
+import { UsersViewComponent } from '@app/users/components/users-view/users-view.component';
+import { UsersCardsComponent } from '@app/users/components/users-view/users-cards/users-cards.component';
+import { UserCardComponent } from '@app/users/components/users-view/users-cards/user-card/user-card.component';
+
 
 export const components: any[] = [
   UsersTableComponent,
@@ -12,6 +16,8 @@ export const components: any[] = [
   UserFormComponent,
   ImportCsvComponent,
   ImportedUsersTableComponent,
-  ImportedUsersTableRowComponent
+  ImportedUsersTableRowComponent,
+  UsersViewComponent,
+  UsersCardsComponent,
+  UserCardComponent
 ];
-
