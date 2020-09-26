@@ -7,6 +7,9 @@ export interface IDocumentConsolidate {
   documentMetadata: IDocumentMetadata;
   documentNode?: IDocumentNode;
   assignedUsers: IUser[];
+  startDate: Date;
+  consultationDeadline: Date;
+  excludedFromConsultation: boolean;
 }
 
 export class DocumentConsolidate {
@@ -14,6 +17,9 @@ export class DocumentConsolidate {
   documentMetadata: DocumentMetadata;
   documentNode?: DocumentNode;
   assignedUsers: User[];
+  startDate: Date;
+  consultationDeadline: Date;
+  excludedFromConsultation: boolean;
 
   constructor(data: IDocumentConsolidate) {
     this.fromJson(data);
@@ -24,6 +30,9 @@ export class DocumentConsolidate {
     this.documentMetadata = new DocumentMetadata(data.documentMetadata);
     this.documentNode = new DocumentNode(data.documentNode);
     this.assignedUsers = data.assignedUsers.map(iUser => new User(iUser));
+    this.startDate = new Date(data.startDate);
+    this.consultationDeadline = new Date(data.consultationDeadline);
+    this.excludedFromConsultation = data.excludedFromConsultation;
   }
 
   toJson(): IDocumentConsolidate {
@@ -31,7 +40,40 @@ export class DocumentConsolidate {
       id: this.id,
       documentMetadata: this.documentMetadata.toJson(),
       documentNode: this.documentNode.toJson(),
-      assignedUsers: this.assignedUsers.map(user => user.toJson())
+      assignedUsers: this.assignedUsers.map(user => user.toJson()),
+      startDate: this.startDate,
+      consultationDeadline: this.consultationDeadline,
+      excludedFromConsultation: this.excludedFromConsultation
+    };
+  }
+}
+
+export interface IDocumentConsultationData {
+  startDate: Date;
+  consultationDeadline: Date;
+  excludedFromConsultation: boolean;
+}
+
+export class DocumentConsultationData {
+  startDate: Date;
+  consultationDeadline: Date;
+  excludedFromConsultation: boolean;
+
+  constructor(data: IDocumentConsultationData) {
+    this.fromJson(data);
+  }
+
+  fromJson(data: IDocumentConsultationData) {
+    this.startDate = data.startDate;
+    this.consultationDeadline = data.consultationDeadline;
+    this.excludedFromConsultation = data.excludedFromConsultation;
+  }
+
+  toJson(): IDocumentConsultationData {
+    return {
+      startDate: this.startDate,
+      consultationDeadline: this.consultationDeadline,
+      excludedFromConsultation: this.excludedFromConsultation
     };
   }
 }

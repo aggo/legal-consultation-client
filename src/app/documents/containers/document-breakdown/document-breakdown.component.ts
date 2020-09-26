@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
 import { CoreState } from '@app/core/store';
 import { Observable } from 'rxjs';
-import { DocumentConsolidate, DocumentNode, PageData, PageRequest, User } from '@app/core';
+import { DocumentConsolidate, DocumentConsultationData, DocumentNode, PageData, PageRequest, User } from '@app/core';
 import { DocumentBreakdownStore } from './document-breakdown.store';
 import { ActivatedRoute } from '@angular/router';
 
@@ -39,6 +39,10 @@ export class DocumentBreakdownComponent implements OnInit {
   public onAssignUsers(users: User[]) {
     const assignedUsersIds = users.map((user: User) => user.id);
     this.store.dispatch(new fromStore.SaveDocumentAssignedUsers(this.documentId, assignedUsersIds));
+  }
+
+  public onSaveDates(documentConsultationData: DocumentConsultationData) {
+    this.store.dispatch(new fromStore.SaveDocumentConsultationData(this.documentId, documentConsultationData));
   }
 
   public onUsersPageChange(pageRequest: PageRequest) {
