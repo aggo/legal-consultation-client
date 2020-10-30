@@ -18,7 +18,7 @@ export class DocumentBreakdownComponent implements OnInit {
   public availableUsers$: Observable<User[]> = this.store.pipe(select(fromStore.getUsers));
   public usersPageData$: Observable<PageData> = this.store.pipe(select(fromStore.getUsersPageData));
 
-  private documentId: string;
+  private documentMetadataId: string;
 
   constructor(private store: Store<CoreState>,
               private documentBreakdownStore: DocumentBreakdownStore,
@@ -26,7 +26,7 @@ export class DocumentBreakdownComponent implements OnInit {
   }
 
   public ngOnInit() {
-    this.documentId = this.route.snapshot.params['id'];
+    this.documentMetadataId = this.route.snapshot.params['metadataId'];
     this.documentBreakdownStore.expandedNodes.subscribe((nodeId: string) => {
       this.store.dispatch(new fromStore.LoadComments(nodeId));
     });
@@ -38,11 +38,11 @@ export class DocumentBreakdownComponent implements OnInit {
 
   public onAssignUsers(users: User[]) {
     const assignedUsersIds = users.map((user: User) => user.id);
-    this.store.dispatch(new fromStore.SaveDocumentAssignedUsers(this.documentId, assignedUsersIds));
+    this.store.dispatch(new fromStore.SaveDocumentAssignedUsers(this.documentMetadataId, assignedUsersIds));
   }
 
   public onSaveDates(documentConsultationData: DocumentConsultationData) {
-    this.store.dispatch(new fromStore.SaveDocumentConsultationData(this.documentId, documentConsultationData));
+    this.store.dispatch(new fromStore.SaveDocumentConsultationData(this.documentMetadataId, documentConsultationData));
   }
 
   public onUsersPageChange(pageRequest: PageRequest) {

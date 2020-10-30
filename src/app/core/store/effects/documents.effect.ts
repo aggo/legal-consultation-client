@@ -43,7 +43,7 @@ export class DocumentsEffect {
       map((action: documentsActions.SaveDocument) => action.payload),
       concatMap((document: DocumentMetadata) => {
         return this.documentsService.save(document).pipe(
-            map((id: string) => new documentsActions.SaveDocumentSuccess(id)),
+            map((metadataId: string) => new documentsActions.SaveDocumentSuccess(metadataId)),
             catchError(error => of(new documentsActions.SaveDocumentFail(this.mapError(error))))
         );
       })

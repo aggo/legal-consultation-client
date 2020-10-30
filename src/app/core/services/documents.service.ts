@@ -32,8 +32,7 @@ export class DocumentsService {
   }
 
   public save(documentMetadata: DocumentMetadata): Observable<string> {
-    return this.documentsApiService
-        .post(documentMetadata.toJson());
+    return this.documentsApiService.post(documentMetadata.toJson());
   }
 
   public getAssignedUsers(id: string): Observable<User[]> {

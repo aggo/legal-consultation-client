@@ -69,7 +69,7 @@
                              (nodeSave)="documentNodeUpdate.emit($event)"></ec-document-node-edit-modal>
 <ec-document-deadline-modal #deadlineModal
                             (saveDates)="saveDates.emit($event)"
-                            [startDate]="document.startDate"
-                            [consultationDeadline]="document.consultationDeadline"
-                            [excludedFromConsultation]="document.excludedFromConsultation">
+                            [startDate]="document.documentConfiguration.consultationStartDate"
+                            [consultationDeadline]="document.documentConfiguration.consultationDeadline"
+                            [excludedFromConsultation]="document.documentConfiguration.excludedFromConsultation">
 </ec-document-deadline-modal>
